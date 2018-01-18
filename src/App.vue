@@ -1,11 +1,25 @@
 <template>
   <div id="app">
+    <Header></Header>
+    <Twenty></Twenty>
   </div>
 </template>
 
 <script>
+import Header from './components/Header'
+import Twenty from './components/Twenty'
+
 export default {
+  components: {
+    Header: Header,
+    Twenty: Twenty
+  },
   name: 'app',
+  computed: {
+    name () {
+      return this.$store.state.name
+    }
+  },
   data () {
     return {}
   }
@@ -17,23 +31,14 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  display: grid;
+  grid-template-rows: repeat(12, 1fr);
 }
 
-h1, h2 {
+h1,
+h2 {
   font-weight: normal;
-}
-
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  display: inline-block;
-  margin: 0 10px;
 }
 
 a {
