@@ -1,8 +1,8 @@
 <template>
   <div id="container">
     <h1 id="logo">Cricket Scorer</h1>
-    <h2 class="player" :class="{ active: returnActive.player1 }" id="player1" @click="disableToggleP1">Player 1</h2>
-    <h2 class="player" :class="{ active: returnActive.player2 }" id="player2" @click="disableToggleP2">Player 2</h2>
+    <h2 class="player" :class="{ active: returnActive.player1 }" id="player1" @click="togglePlayers">Player 1</h2>
+    <h2 class="player" :class="{ active: returnActive.player2 }" id="player2" @click="togglePlayers">Player 2</h2>
     <h4 id="versus">VS.</h4>
   </div>
 </template>
@@ -19,13 +19,11 @@ export default {
   },
   methods: {
     ...mapActions(['toggleActive']),
-    disableToggleP1: function () {
-      if (!this.returnActive.player1) {
+    togglePlayers: function (event) {
+      if (!this.returnActive.player1 && event.target.id === 'player1') {
         this.toggleActive()
       }
-    },
-    disableToggleP2: function () {
-      if (!this.returnActive.player2) {
+      if (!this.returnActive.player2 && event.target.id === 'player2') {
         this.toggleActive()
       }
     }
@@ -45,6 +43,7 @@ export default {
   grid-column: 1 / 13;
   justify-self: center;
   align-self: center;
+  margin: 0;
 }
 
 .player {
@@ -58,7 +57,6 @@ export default {
 .active {
   color: seagreen;
   background-color: aquamarine;
-  padding: 20px;
 }
 
 #player1 {
